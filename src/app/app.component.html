@@ -1,0 +1,29 @@
+<ion-app>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>QR Scanner</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <ion-content fullscreen>
+      <ion-card>
+        <ion-card-content>
+          <ion-item lines="none">
+            <ion-icon  name="newspaper-outline" slot="end" size="large" color="warning"></ion-icon>
+            <ion-label>
+             Fetch Invoice <p>Please enter the invoice </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Invoice ID"></ion-input>
+            <ion-icon name="qr-code-outline" slot="end" (click)="OpenModal()"></ion-icon>
+          </ion-item>
+          
+        </ion-card-content>
+      </ion-card>
+
+    </ion-content>
+  
+</ion-app>

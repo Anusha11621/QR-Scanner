@@ -1,0 +1,73 @@
+<ion-header [translucent]="true"  class="ion-padding-bottom">
+  <ion-item>
+    <ion-icon (click)="CloseModal()" size="large" slot="start" name="close-outline"></ion-icon>
+  </ion-item>
+</ion-header>
+
+<ion-content>
+  
+  <!-- Fallback for iOS PWA -->
+  <input #fileinput type="file" accept="image/*;capture=camera" hidden (change)="handleFile($event.target.files)">
+ 
+  <!-- Trigger the file input -->
+ 
+  <ion-button expand="full" (click)="startScan()">
+    <ion-icon slot="start" name="scan-outline"></ion-icon>
+    Start scan
+  </ion-button>
+ 
+  <ion-card *ngIf="createdCode">
+		<ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+		<ion-card-content>
+			<p>Value: {{createdCode}}</p>
+		</ion-card-content>
+	</ion-card>
+
+  <ion-text class="ion-text-center">
+    <h5>Place the QR code inside the area</h5>
+  </ion-text>
+  <ion-text class="ion-text-center">
+    <p>scanning will start automatically</p>
+  </ion-text>
+
+
+  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="scanResult">
+    <ion-icon slot="start" name="refresh"></ion-icon>
+    Reset
+  </ion-button>
+
+  <div class="qr-scanner" [hidden]="!scanActive">
+    <video #video id="myVideo" [hidden]="!scanActive" width="75%"></video>
+    <div class="box">
+        <div class="line"></div>
+        <div class="angle"></div>
+    </div>
+</div>
+  <canvas #canvas hidden></canvas>
+    <div class="center" *ngIf="scanActive">
+      <ion-button (click)="stopScan()" color="danger" >
+        <ion-icon slot="start" name="close"></ion-icon>
+        Cancel Scanning
+      </ion-button>
+    </div>
+  
+ 
+  <ion-card *ngIf="scanResult">
+    <ion-card-header>
+      <ion-card-title>QR Code</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ scanResult }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-button expand="full" (click)="captureImage()">
+    <ion-icon slot="start" name="camera"></ion-icon>
+    select from gallery
+  </ion-button>
+</ion-footer>
+
+  
+
+
